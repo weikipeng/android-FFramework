@@ -1,0 +1,187 @@
+package com.fan.framework.imageloader;
+
+import android.widget.ImageView;
+
+import com.fan.framework.R;
+import com.fan.framework.base.FFActivity;
+import com.fan.framework.utils.FFUtils;
+
+
+/**
+ * 创建日期2012-12-26下午12:36:52<br/>
+ * 作用描述：请求封装类
+ */
+public class FFImageRequest
+{
+	/**
+	 * @param doCache 
+	 */
+	public FFImageRequest(String imageUrl,ImageView imageView, boolean doCache, int width,
+			int height, FFImageCallBack callBack, FFActivity activity, boolean isRound, int defaultResId)
+	{
+		this.setCallBack(callBack);
+		this.setImageUrl(imageUrl);
+		this.setWidth(width);
+		this.setHeight(height);
+		this.setImageView(imageView);
+			if(imageView.getTag(R.id.tag_imageLoader) == null || !imageView.getTag(R.id.tag_imageLoader).equals(imageUrl)){
+				if(imageView != null){
+				setNeedRefresh(true);
+			}
+			imageView.setTag(R.id.tag_imageLoader,imageUrl);
+		}
+		this.setActivity(activity);
+		this.setDoCache(doCache);
+		this.setRound(isRound);
+		this.setDefaultResId(defaultResId);
+	}
+	
+	public FFImageRequest() {
+	}
+
+	private String imageUrl;
+	private FFImageCallBack callBack;
+	private int width;
+	private int height;
+	private ImageView imageView;
+	private boolean doCache = true;
+	private FFActivity activity;
+	private boolean isRound;
+	private int defaultResId = 0;
+	private boolean needRefresh = false;
+	private int deletedResId = 0;
+	private int status = 0;
+	private int failedResId = 0;
+	
+	public String getCacheKey(){
+		return new StringBuilder(getImageUrl()).append(":").append(getHeight()).append("#").append(getWidth()).append(isRound()).toString();
+	}
+	public FFImageRequest setDeletedResId(int deletedResId) {
+		this.deletedResId = deletedResId;
+		return this;
+	}
+
+	public boolean isNeedRefresh() {
+		return needRefresh;
+	}
+
+	public FFImageRequest setNeedRefresh(boolean needRefresh) {
+		this.needRefresh = needRefresh;
+		return this;
+	}
+
+	public int getDefaultResId() {
+		return defaultResId;
+	}
+
+	public FFImageRequest setDefaultResId(int defaultResId) {
+		this.defaultResId = defaultResId;
+		return this;
+	}
+
+	public boolean isRound() {
+		return isRound;
+	}
+
+	public FFImageRequest setRound(boolean isRound) {
+		this.isRound = isRound;
+		return this;
+	}
+
+	public FFActivity getActivity() {
+		return activity;
+	}
+
+	public FFImageRequest setActivity(FFActivity activity) {
+		this.activity = activity;
+		return this;
+	}
+
+	public boolean isDoCache() {
+		return doCache;
+	}
+
+	public FFImageRequest setDoCache(boolean doCache) {
+		this.doCache = doCache;
+		return this;
+	}
+
+	public ImageView getImageView() {
+		return imageView;
+	}
+
+	public FFImageRequest setImageView(ImageView imageView) {
+		this.imageView = imageView;
+		return this;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public FFImageRequest setHeight(int height) {
+		if(height<=0){
+			height = FFUtils.getDisHight();
+		}
+		this.height = height;
+		return this;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public FFImageRequest setWidth(int width) {
+		if(width<=0){
+			width = FFUtils.getDisWidth();
+		}
+		this.width = width;
+		return this;
+	}
+
+	public FFImageCallBack getCallBack() {
+		return callBack;
+	}
+
+	public FFImageRequest setCallBack(FFImageCallBack callBack) {
+		this.callBack = callBack;
+		return this;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public FFImageRequest setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+		return this;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getFailedResId(int status) {
+		if(status == 404){
+			if(deletedResId!=0){
+				return deletedResId;
+			}
+		}
+		if(failedResId != 0){
+			return failedResId;
+		}
+		if(deletedResId != 0){
+			return deletedResId;
+		}
+		return defaultResId;
+	}
+
+	public FFImageRequest setFailedResId(int failedResId) {
+		this.failedResId = failedResId;
+		return this;
+	}
+}

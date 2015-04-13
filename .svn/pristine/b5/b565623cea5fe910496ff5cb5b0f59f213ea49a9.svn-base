@@ -1,0 +1,24 @@
+package com.fan.framework.config;
+
+
+public class FFConfig {
+	public static final class NetConfig {
+		public static final int CONNECTION_TIMEOUT = 10000;
+
+		public static final int CONNECTION_TIMEOUT_3G = 10000;
+
+		public static final int CONNECTION_TIMEOUT_2G = 10000;
+	}
+
+	public static final boolean DEBUG = true;
+	public static final boolean LOG_ENABLE = true;
+	public static final boolean SHOW_DEBUG_TOAST = DEBUG;
+	public static final boolean LOG2SD_ENABLE = true;
+	public static final String CACHE_DIR = "maiDouMi";
+	public static final String LOG_DIR = "maiDouMi_log";
+	public static final String LOG_FILE = "appLog";
+
+	public static int getNetTimeOut() {
+		return NetConfig.CONNECTION_TIMEOUT;
+	}
+}

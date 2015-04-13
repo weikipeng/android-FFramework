@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionBar_ll"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/actionbarHight"
+    android:background="@color/cheng"
+    android:focusable="true"
+    
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:id="@+id/actionBar_back_ll"
+        android:layout_width="@dimen/actionbarHight"
+        android:layout_height="@dimen/actionbarHight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/selector_rectangle_cheng_nostork_nocorner"
+        android:gravity="center|right"
+        android:onClick="onBackPressed"
+        android:paddingBottom="@dimen/border"
+        android:paddingRight="@dimen/border"
+        android:paddingTop="@dimen/border" >
+
+        <ImageView
+            android:id="@+id/actionBar_back_backIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+
+        <!-- <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/border"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_actionbar" /> -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actionBar_menu_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#5588ff"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/actionBar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_baseTitle" />
+
+</RelativeLayout>

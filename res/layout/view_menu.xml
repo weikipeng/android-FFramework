@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/actionbarHight"
+    android:layout_height="@dimen/actionbarHight"
+    android:scaleType="centerInside"
+    android:padding="@dimen/border"
+    android:background="@drawable/selector_rectangle_cheng_nostork_nocorner"
+    android:contentDescription="@string/app_name"
+    android:src="@drawable/ic_actionbar" />
